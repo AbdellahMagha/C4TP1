@@ -1,0 +1,33 @@
+<div class="container">
+  <header>
+    <h1>{{ title }}</h1>
+    <p>Plateforme de gestion des étudiants</p>
+  </header>
+
+  <section class="stats">
+    <h3>Statistiques</h3>
+    <p>Nombre d'étudiants : {{ students.length }}</p>
+    <p>Moyenne générale : {{ moyenneGenerale | number:'1.2-2' }}</p>
+  </section>
+
+  <section class="list">
+    <h3>Liste des étudiants</h3>
+
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Rechercher par nom ou prénom..."
+      class="search-input"
+    />
+
+    <ul>
+      <li *ngFor="let student of filteredStudents">
+        {{ student.prenom }} {{ student.nom }} - Moyenne : {{ student.moyenne }}
+      </li>
+    </ul>
+
+    <p *ngIf="filteredStudents.length === 0" class="no-result">
+      Aucun étudiant trouvé.
+    </p>
+  </section>
+</div>
